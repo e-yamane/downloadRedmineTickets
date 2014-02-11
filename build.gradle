@@ -8,7 +8,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'jp.rough_diamond:rdf-gradle-plugin:1.0'
+        classpath 'jp.rough_diamond:rdf-gradle-plugin:1.0.2'
     }
 }
 apply plugin: 'rdf'
@@ -19,7 +19,24 @@ def defaultEncoding = 'UTF-8'
 sourceCompatibility = 1.7
 version = '0.0'
 
+repositories {
+    mavenCentral()
+    maven {
+        url uri('https://raw.github.com/Rough-Diamond/repos/master/maven')
+    }
+}
+
+dependencies {
+	compile 		'commons-configuration:commons-configuration:1.10'
+    compile 		'jp.rough_diamond:redmine-tools:1.0.1'
+	compile 		'com.google.guava:guava:15.0'
+	compile 		'com.orangesignal:orangesignal-csv:2.1.0'
+  	testCompile 	'junit:junit:4.+'
+}
+
 task wrapper(type:Wrapper) {
   gradleVersion='1.8'
 }
 
+apply plugin:'application'
+mainClassName="jp.rough_diamond.App"
