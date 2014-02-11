@@ -1,0 +1,25 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+buildscript {
+    repositories {
+        maven {
+            url uri('https://raw.github.com/Rough-Diamond/repos/master/maven')
+        }
+    }
+    dependencies {
+        classpath 'jp.rough_diamond:rdf-gradle-plugin:1.0'
+    }
+}
+apply plugin: 'rdf'
+
+def defaultEncoding = 'UTF-8'
+[compileJava, compileTestJava]*.options*.encoding = defaultEncoding
+
+sourceCompatibility = 1.7
+version = '0.0'
+
+task wrapper(type:Wrapper) {
+  gradleVersion='1.8'
+}
+
