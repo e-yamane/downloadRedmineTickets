@@ -1,4 +1,4 @@
-downloadRedminTickets
+downloadRedmineTickets
 =====================
 
 RedmineのチケットをCSV形式で標準出力に出力するアプリケーションです。
