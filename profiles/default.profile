@@ -10,7 +10,7 @@ sorterRef='${sorter.チケット登録順}'
 
 localFilter {
 	未完了または特定スプリントの特定トラッカーのチケット = '''
-		tracker.name == '${trackerName}' && (statusName != 'Done' || targetVersion == null || targetVersion.name == '${versionName}')
+		tracker.name == '${trackerName}' && (statusName != '${doneStatus}' || targetVersion == null || targetVersion.name == '${versionName}')
 '''
 }
 
@@ -21,6 +21,7 @@ sorter {
 flatter = '''
 #{
 	"No.":id, 
+	"トラッカー":tracker.name,
 	"チケット名":subject, 
 	"状態":statusName, 
 	"チケット作成日":#util.date(createdOn, "yyyy/M/d"), 
@@ -31,7 +32,7 @@ flatter = '''
 	    journals.{? 
 	        (#this.notes != null && #this.notes.isEmpty() == false)
 	    }.{
-	        #util.date(#this.createdOn, 'yyyy/MM/dd') + ':' + #this.user.fullName + '\\n' + #this.notes
+	        #util.tmp = #this.createdOn, #util.date('yyyy/MM/dd') + ':' + #this.user.fullName + '\\n' + #this.notes
 	    }, \"\\n\")
 }
 '''

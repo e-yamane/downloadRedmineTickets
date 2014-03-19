@@ -85,7 +85,7 @@ public class App {
 				return INCLUDE.valueOf(name);
 			}
 		}), INCLUDE.class);
-		String localFilter = config.getString("localFilterRef", "").trim();
+		String localFilter = Joiner.on(',').join(config.getStringArray("localFilterRef")).trim();
 		System.err.println(localFilter);
 		Predicate<Issue> filter = (localFilter.isEmpty()) ? Predicates.<Issue>alwaysTrue() : new OGNLFilter<Issue>(localFilter);
 		System.err.println(filter);
